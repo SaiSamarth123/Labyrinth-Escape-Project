@@ -1,0 +1,185 @@
+Regular Labyrinth
+
+user@mimir: ~/cs_251_data_structures_spring_2021/project_4__labyrinth_escape > make build_reg
+rm -f ExploreTheRegularLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheRegularLabyrinth.cpp -o ExploreTheRegularLabyrinth.exe
+user@mimir: ~/cs_251_data_structures_spring_2021/project_4__labyrinth_escape > make run_reg
+./ExploreTheRegularLabyrinth.exe
+(gdb) b 16
+Breakpoint 1 at 0x1c75: file ExploreTheRegularLabyrinth.cpp, line 19.
+(gdb) r
+Starting program: /home/sai_samarth/cs_251_data_structures_spring_2021/project_4__labyrinth_escape/ExploreTheRegularLabyrinth.exe 
+Breakpoint 1, main () at ExploreTheRegularLabyrinth.cpp:19
+19      if (isPathToFreedom(start, kPathOutOfRegularMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555763c38 <vtable for Maze+16>, grid = {
+    _vptr.Grid = 0x555555763c58 <vtable for Grid<MazeCell*>+16>, Rows = 0x555555776f40, NumRows = 4}, 
+  numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555777160
+(gdb) p *start
+$1 = {whatsHere = "", north = 0x0, south = 0x555555777360, east = 0x0, west = 0x0}
+(gdb) p *(start->south)
+$2 = {whatsHere = "", north = 0x555555777160, south = 0x5555557774a0, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south)
+$3 = {whatsHere = "", north = 0x555555777360, south = 0x0, east = 0x5555557774f0, west = 0x0}
+(gdb) i locals
+m = {_vptr.Maze = 0x555555763c38 <vtable for Maze+16>, grid = {
+    _vptr.Grid = 0x555555763c58 <vtable for Grid<MazeCell*>+16>, Rows = 0x555555776f40, NumRows = 4}, 
+  numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555777160
+(gdb) p *(start->south->south->east)
+$4 = {whatsHere = "", north = 0x0, south = 0x555555777630, east = 0x555555777540, west = 0x5555557774a0}
+(gdb) p *(start->south->south->east->south)
+$5 = {whatsHere = "", north = 0x5555557774f0, south = 0x0, east = 0x555555777680, west = 0x5555557775e0}
+(gdb) p *(start->south->south->east->east)
+$6 = {whatsHere = "", north = 0x555555777400, south = 0x0, east = 0x555555777590, west = 0x5555557774f0}
+(gdb) p *(start->south->south->east->east->north)
+$7 = {whatsHere = "", north = 0x5555557772c0, south = 0x555555777540, east = 0x0, west = 0x5555557773b0}
+(gdb) p *(start->south->south->east->east->north->north)
+$8 = {whatsHere = "Potion", north = 0x0, south = 0x555555777400, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south->east->east)
+$9 = {whatsHere = "", north = 0x555555777400, south = 0x0, east = 0x555555777590, west = 0x5555557774f0}
+(gdb) p *(start->south->south->east->east->east)
+$10 = {whatsHere = "", north = 0x555555777450, south = 0x5555557776d0, east = 0x0, west = 0x555555777540}
+(gdb) p *(start->south->south->east->east->east->north)
+$11 = {whatsHere = "", north = 0x555555777310, south = 0x555555777590, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south->east->east->east->north->north)
+$12 = {whatsHere = "Wand", north = 0x0, south = 0x555555777450, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south->east->east->east->south)
+$13 = {whatsHere = "", north = 0x555555777590, south = 0x0, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south->east)
+$14 = {whatsHere = "", north = 0x0, south = 0x555555777630, east = 0x555555777540, west = 0x5555557774a0}
+(gdb) p *(start->south->south->east->south)
+$15 = {whatsHere = "", north = 0x5555557774f0, south = 0x0, east = 0x555555777680, west = 0x5555557775e0}
+(gdb) p *(start->south->south->east->south->east)
+$16 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x0, west = 0x555555777630}
+(gdb) p *(start->south->south->east->south->west)
+$17 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555777630, west = 0x0}
+(gdb) p *(start->south->south->east)
+$18 = {whatsHere = "", north = 0x0, south = 0x555555777630, east = 0x555555777540, west = 0x5555557774a0}
+(gdb) p *(start->south->south->east->south)
+$19 = {whatsHere = "", north = 0x5555557774f0, south = 0x0, east = 0x555555777680, west = 0x5555557775e0}
+(gdb) p *(start->south->south->east->east)
+$20 = {whatsHere = "", north = 0x555555777400, south = 0x0, east = 0x555555777590, west = 0x5555557774f0}
+(gdb) p *(start->south->south->east->north)
+Cannot access memory at address 0x0
+(gdb) p *(start->south->south->east->east->north)
+$21 = {whatsHere = "", north = 0x5555557772c0, south = 0x555555777540, east = 0x0, west = 0x5555557773b0}
+(gdb) p *(start->south->south->east->east->north->west)
+$22 = {whatsHere = "", north = 0x555555777270, south = 0x0, east = 0x555555777400, west = 0x0}
+(gdb) p *(start->south->south->east->east->north->west->north)
+$23 = {whatsHere = "Spellbook", north = 0x0, south = 0x5555557773b0, east = 0x0, west = 0x0}
+(gdb) p *(start->south->south->east->east->north->west->north)
+$24 = {whatsHere = "Spellbook", north = 0x0, south = 0x5555557773b0, east = 0x0, 
+  west = 0x0}
+(gdb) p *(start->south->south->east->east->north->west->north->south->east->north)
+$25 = {whatsHere = "Potion", north = 0x0, south = 0x555555777400, east = 0x0, 
+  west = 0x0}
+(gdb) p *(start->south->south->east->east->north->west->north->south->east->north->south->south->east->north->north)
+$26 = {whatsHere = "Wand", north = 0x0, south = 0x555555777450, east = 0x0, 
+  west = 0x0}
+(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 3001] will be killed.
+
+Quit anyway? (y or n) y
+
+
+
+
+Twisty Labyrinth
+
+user@mimir: ~/cs_251_data_structures_spring_2021/project_4__labyrinth_escape > make build_twisty
+rm -f ExploreTheTwistyLabyrinth.exe
+g++ -g -std=c++11 -Wall ExploreTheTwistyLabyrinth.cpp -o ExploreTheTwistyLabyrinth.exe
+user@mimir: ~/cs_251_data_structures_spring_2021/project_4__labyrinth_escape > make run_twisty
+./ExploreTheTwistyLabyrinth.exe
+You have not escaped!
+user@mimir: ~/cs_251_data_structures_spring_2021/project_4__labyrinth_escape > gdb ExploreTheTwistyLabyrinth.exe
+Reading symbols from ExploreTheTwistyLabyrinth.exe...done.
+(gdb) b 18
+Breakpoint 1 at 0x1bf0: file ExploreTheTwistyLabyrinth.cpp, line 20.
+(gdb) r
+Starting program: /home/sai_samarth/cs_251_data_structures_spring_2021/project_4__labyrinth_escape/ExploreTheTwistyLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheTwistyLabyrinth.cpp:20
+20      if (isPathToFreedom(start, kPathOutOfTwistyMaze)) {
+(gdb) i locals
+m = {_vptr.Maze = 0x555555764c30 <vtable for Maze+16>, grid = {
+    _vptr.Grid = 0x555555764c50 <vtable for Grid<MazeCell*>+16>, 
+    Rows = 0x555555777ef0, NumRows = 4}, numRows = 4, numCols = 4, 
+  kNumTwistyRooms = 12}
+start = 0x5555557786f0
+(gdb) p *(start)
+$1 = {whatsHere = "", north = 0x555555778940, south = 0x0, east = 0x0, 
+  west = 0x555555778a70}
+(gdb) p *(start->north)
+$2 = {whatsHere = "", north = 0x5555557787b0, south = 0x5555557786f0, 
+  east = 0x555555778800, west = 0x5555557788f0}
+(gdb) p *(start->north->north)
+$3 = {whatsHere = "", north = 0x5555557788a0, south = 0x555555778000, 
+  east = 0x555555778a70, west = 0x555555778940}
+(gdb) p *(start->north->north->north)
+$4 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x0, 
+  west = 0x5555557787b0}
+(gdb) p *(start->west)
+$5 = {whatsHere = "", north = 0x5555557786f0, south = 0x0, east = 0x5555557787b0, 
+  west = 0x0}
+(gdb) p *(start->west->south)
+Cannot access memory at address 0x0
+(gdb) p *(start->west->east->south)
+$6 = {whatsHere = "", north = 0x555555778850, south = 0x555555778990, 
+  east = 0x5555557787b0, west = 0x0}
+(gdb) p *(start->west->east->south->north)
+$7 = {whatsHere = "", north = 0x555555778000, south = 0x0, east = 0x5555557788f0, 
+  west = 0x0}
+(gdb) p *(start->west->east->south->north->east)
+$8 = {whatsHere = "", north = 0x555555778850, south = 0x555555778760, 
+  east = 0x555555778940, west = 0x0}
+(gdb) p *(start->west->east->south->north->east->west)
+Cannot access memory at address 0x0
+(gdb) p *(start->west->east->south->north->east)
+$9 = {whatsHere = "", north = 0x555555778850, south = 0x555555778760, 
+  east = 0x555555778940, west = 0x0}
+(gdb) p *(start->west->east->south->north->east->east)
+$10 = {whatsHere = "", north = 0x5555557787b0, south = 0x5555557786f0, 
+  east = 0x555555778800, west = 0x5555557788f0}
+(gdb) p *(start->west->east->south->north->east->east->east)
+$11 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555778940, 
+  west = 0x555555778ac0}
+(gdb) p *(start->west->east->south->north->east->east->east->west)
+$12 = {whatsHere = "Wand", north = 0x0, south = 0x0, east = 0x0, 
+  west = 0x555555778800}
+(gdb) p *(start->west->east->south->north)
+$13 = {whatsHere = "", north = 0x555555778000, south = 0x0, east = 0x5555557788f0, 
+  west = 0x0}
+(gdb) p *(start->west->east->south)
+$14 = {whatsHere = "", north = 0x555555778850, south = 0x555555778990, 
+  east = 0x5555557787b0, west = 0x0}
+(gdb) p *(start->west->east->south->south)
+$15 = {whatsHere = "", north = 0x555555778760, south = 0x0, east = 0x0, 
+  west = 0x555555778000}
+(gdb) p *(start->west->east->south->south->north)
+$16 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x555555778990, 
+  west = 0x5555557788f0}
+(gdb) p *(start->north->east->west)
+$17 = {whatsHere = "Wand", north = 0x0, south = 0x0, east = 0x0, west = 0x555555778800}
+(gdb) p *(start->north->east->west->east->south)
+Cannot access memory at address 0x28
+(gdb) p *(start->north->east->west->west)
+$18 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555778940, west = 0x555555778ac0}
+(gdb) p *(start->north->east->west->west->east->south)
+$19 = {whatsHere = "", north = 0x555555778940, south = 0x0, east = 0x0, west = 0x555555778a70}
+(gdb) 
+$20 = {whatsHere = "", north = 0x555555778940, south = 0x0, east = 0x0, west = 0x555555778a70}
+(gdb) p *(start->north->east->west->west->east->west->south)
+$21 = {whatsHere = "Spellbook", north = 0x0, south = 0x0, east = 0x555555778990, west = 0x5555557788f0}
+(gdb) p *(start->north->east->west->west->east->west->south->west->east->north->north)
+$22 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x0, west = 0x5555557787b0}
+(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 12827] will be killed.
+
+Quit anyway? (y or n) y
